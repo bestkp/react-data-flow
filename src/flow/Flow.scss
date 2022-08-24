@@ -1,0 +1,350 @@
+p {
+  margin-bottom: 0 !important;
+}
+.one-line-ellipse {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.top-line {
+  height: 2px;
+  background: #ff8a8a;
+  flex-shrink: 0;
+  border-radius: 4px 4px 0 0;
+}
+.branch-box-node .top-line {
+  background: #FFC68A;
+}
+
+.node-wrap-box {
+  //display: inline-flex;
+  flex-direction: column;
+  position: relative;
+  width: 142px;
+  height: 66px;
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid #e9edf0;
+  border-top: none;
+  cursor: pointer;
+  &.branch-box-node:after {
+    content: "";
+    position: absolute;
+    top: 75px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    margin: auto;
+    width: 2px;
+    height: 18px;
+    background-color: #e2e2ea;
+  }
+  &.branch-box-node {
+    position: absolute;
+    left: 50%;
+    top: -84px;
+    transform: translateX(-50%);
+  }
+}
+
+.node-wrap-box .title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 9px;
+  width: 100%;
+  height: 28px;
+  font-weight: 500;
+  color: #92929d;
+  line-height: 28px;
+  font-size: 12px;
+  text-align: left;
+  background: #f8f8fa;
+  border-radius: 4px 4px 0 0;
+}
+
+.node-wrap-box .placeholder {
+  color: #bfbfbf;
+}
+
+.node-wrap-box .close {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 20px;
+}
+
+.node-wrap-box .content {
+  position: relative;
+  font-size: 12px;
+  font-weight: 500;
+  color: #44444f;
+  line-height: 20px;
+  padding: 8px 9px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.node-wrap-box .content .text {
+  @extend .one-line-ellipse;
+}
+
+.start-node.node-wrap-box .content .text {
+  display: block;
+  white-space: nowrap;
+}
+
+.node-wrap-box:before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 4px;
+  border-style: solid;
+  border-width: 5px 5px 0 5px;
+  border-color: #e2e2ea transparent transparent;
+  background: #fff;
+}
+.node-wrap-box.start-node:before {
+  content: none;
+}
+
+.top-left-cover-line {
+  left: -1px;
+}
+
+.top-left-cover-line,
+.top-right-cover-line {
+  position: absolute;
+  height: 8px;
+  width: 50%;
+  background-color: #fff;
+  top: -4px;
+}
+
+.top-right-cover-line {
+  right: -1px;
+}
+
+.bottom-left-cover-line {
+  left: -1px;
+}
+
+.bottom-left-cover-line,
+.bottom-right-cover-line {
+  position: absolute;
+  height: 8px;
+  width: 50%;
+  background-color: #fff;
+  bottom: -4px;
+}
+
+.bottom-right-cover-line {
+  right: -1px;
+}
+
+.dingflow-design {
+  width: 100%;
+  overflow: auto;
+}
+
+.dingflow-design .box-scale {
+  transform: scale(1);
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  padding: 54.5px 0;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  min-width: -webkit-min-content;
+  min-width: -moz-min-content;
+  min-width: min-content;
+  -webkit-transform-origin: 0 0 0;
+  transform-origin: 0 0 0;
+}
+
+.dingflow-design .node-wrap {
+  flex-direction: column;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  padding: 0 50px;
+  position: relative;
+}
+
+.dingflow-design .branch-wrap,
+.dingflow-design .node-wrap {
+  display: inline-flex;
+  width: 100%;
+}
+
+.dingflow-design .branch-box-wrap {
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  min-height: 150px;
+  width: 100%;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.dingflow-design .branch-box {
+  display: flex;
+  overflow: visible;
+  min-height: 110px;
+  height: auto;
+  border-bottom: 2px solid #E2E2EA;
+  border-top: 2px solid #E2E2EA;
+  position: relative;
+  margin-top: 84px;
+}
+
+.dingflow-design .branch-box .col-box {
+  background: #fff;
+}
+
+.dingflow-design .branch-box .col-box:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  margin: auto;
+  width: 2px;
+  height: 100%;
+  background-color: #e2e2ea;
+}
+
+.dingflow-design .col-box {
+  display: inline-flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  position: relative;
+}
+
+.dingflow-design .condition-node {
+  min-height: 100px;
+}
+
+.dingflow-design .condition-node,
+.dingflow-design .condition-node-box {
+  display: inline-flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-flex: 1;
+}
+
+.dingflow-design .condition-node-box {
+  padding-top: 30px;
+  padding-right: 20px;
+  padding-left: 20px;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  flex-grow: 1;
+  position: relative;
+}
+
+.dingflow-design .condition-node-box:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 2px;
+  height: 100%;
+  background-color: #e2e2ea;
+}
+
+.dingflow-design .auto-judge {
+  position: relative;
+  width: 120px;
+  height: 32px;
+  background: #f1f1f5;
+  border-radius: 4px;
+  background: rgba(241, 241, 245, 1);
+  .content {
+    height: 100%;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &-pic {
+      width: 24px;
+      height: 24px;
+      background: red;
+      border-radius: 2px;
+      border: 1px solid #e9edf0;
+      flex-shrink: 0;
+      margin-right: 6px;
+    }
+    &-text {
+      @extend .one-line-ellipse;
+      font-size: 12px;
+      font-weight: 500;
+      color: #696974;
+    }
+  }
+}
+
+.dingflow-design .end-node {
+  border-radius: 50%;
+      font-size: 12px;
+      font-weight: 500;
+      color: #696974;
+}
+
+.dingflow-design .end-node .end-node-circle {
+  width: 5px;
+      height: 5px;
+      margin: auto;
+      border-radius: 50%;
+      background: #E2E2EA;
+}
+
+.dingflow-design .end-node .end-node-text {
+  margin-top: 4px;
+  text-align: center;
+}

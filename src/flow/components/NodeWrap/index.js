@@ -18,6 +18,7 @@ const NodeWrap = ({ nodeConfig, flowPermission }) => {
     setData(deepCopy(data))
   };
   const handleAdd = (preData, addData) => {
+    addData.isCondition = preData.isCondition;
     preData.childNode = addData;
     setData(deepCopy(data));
   };

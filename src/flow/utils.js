@@ -22,3 +22,22 @@ export function updateObj(obj, newNode) {
     }
   }
 }
+export function delChildFromObj(obj1, node1) {
+  let isFound = false;
+  return function delFunc (obj, node) {
+    if (obj.childNode) {
+      if (obj.childNode.nodeId === node.nodeId) {
+        obj.childNode = node.childNode;
+        isFound = true;
+      } else {
+        delFunc(obj.childNode, node);
+      }
+    } else if (obj.type === 4 && obj.conditionNodes.length) {
+      for(let condNode of obj.conditionNodes) {
+        if(!isFound) {
+          delFunc(condNode, node);
+        }
+      }
+    }
+  }(obj1, node1)
+}

@@ -1,20 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import AddNode from "../AddNode";
 import NodeWrap from "../NodeWrap";
-import { Button, Space } from "antd";
-import { deepCopy } from "../../utils";
-import { FlowContext } from "../../store/context";
+import { Space } from "antd";
 import "./index.scss";
 import Icon from "../Icon";
 
-const RouteNode = ({ nodeConfig }) => {
-  const { data, setData } = useContext(FlowContext);
+const RouteNode = ({ nodeConfig, onAdd, delNode }) => {
   const addTerm = () => {};
   const delTerm = () => {};
-  const handleAdd = (preData, addData) => {
-    preData.childNode = addData;
-    setData(deepCopy(data));
-  };
   return (
     <div className="branch-wrap">
       <div className="branch-box-wrap">
@@ -25,8 +18,12 @@ const RouteNode = ({ nodeConfig }) => {
               <div className="title">
                 <span className={"one-line-ellipse"}>选项</span>
                 <Space>
-                  <Icon name="icon-fuzhi1" />
-                  <Icon name="icon-shanchu1" />
+                  <span>
+                    <Icon name="icon-fuzhi1" />
+                  </span>
+                  <span onClick={() => delNode(nodeConfig)}>
+                    <Icon name="icon-shanchu1" />
+                  </span>
                 </Space>
               </div>
               <div className="content">
@@ -56,7 +53,7 @@ const RouteNode = ({ nodeConfig }) => {
                       </div>
                       <AddNode
                         currentNode={item}
-                        onUpdateChildNodeP={handleAdd}
+                        onUpdateChildNodeP={onAdd}
                         childNodeP={item.childNode}
                       ></AddNode>
                     </div>
@@ -85,7 +82,7 @@ const RouteNode = ({ nodeConfig }) => {
         </div>
         <AddNode
           currentNode={nodeConfig}
-          onUpdateChildNodeP={handleAdd}
+          onUpdateChildNodeP={onAdd}
           childNodeP={nodeConfig.childNode}
         ></AddNode>
       </div>

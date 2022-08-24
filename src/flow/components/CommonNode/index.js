@@ -1,17 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import AddNode from "../AddNode";
-import { FlowContext } from "../../store/context";
-import { deepCopy, updateObj } from "../../utils";
 import Icon from "../Icon";
 import { Space } from "antd";
-const NODE_TOP_LINE_COLOR_LIST = ["#FF8A8A", "#64C8BC", "#8ABEFF", "#FFC68A"]
+const NODE_TOP_LINE_COLOR_LIST = ["#FF8A8A", "#64C8BC", "#8ABEFF", "#FFC68A"];
 
-const CommonNode = ({ nodeConfig, delNode, onClick }) => {
-  const { data, setData } = useContext(FlowContext);
-  const handleAdd = (preData, addData) => {
-    preData.childNode = addData;
-    setData(deepCopy(data));
-  };
+const CommonNode = ({ nodeConfig, delNode, onAdd, onClick }) => {
   return (
     <div className="node-wrap">
       <div
@@ -19,15 +12,22 @@ const CommonNode = ({ nodeConfig, delNode, onClick }) => {
           nodeConfig.type === 0 ? "start-node" : ""
         } ${nodeConfig.error ? "active error" : ""}`}
       >
-        <div className={`top-line`} style={{background: NODE_TOP_LINE_COLOR_LIST[nodeConfig.type]}} />
+        <div
+          className={`top-line`}
+          style={{ background: NODE_TOP_LINE_COLOR_LIST[nodeConfig.type] }}
+        />
         <div>
           <div className="title">
             <span className={"one-line-ellipse"}>{nodeConfig.nodeName}</span>
             {nodeConfig.type === 0 && <Icon name="icon-lianjie1" />}
-            {nodeConfig.type !==0 && (
+            {nodeConfig.type !== 0 && (
               <Space>
-                <Icon name="icon-fuzhi1" />
-                <Icon name="icon-shanchu1" />
+                <span>
+                  <Icon name="icon-fuzhi1" />
+                </span>
+                <span onClick={() => delNode(nodeConfig)}>
+                  <Icon name="icon-shanchu1" />
+                </span>
               </Space>
             )}
           </div>
@@ -44,7 +44,7 @@ const CommonNode = ({ nodeConfig, delNode, onClick }) => {
       <AddNode
         currentNode={nodeConfig}
         childNodeP={nodeConfig.childNode}
-        onUpdateChildNodeP={handleAdd}
+        onUpdateChildNodeP={onAdd}
       />
     </div>
   );

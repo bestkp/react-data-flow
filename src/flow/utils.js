@@ -25,8 +25,8 @@ export function updateObj(obj, newNode) {
 export function delChildFromObj(originObj, toDelData) {
   let isFound = false; // 用于处理删除条件分支里的node，如果找到就不继续执行
   return (function delFunc(obj, node) {
-    //  先判断当前节点是条件节点,根据要删除节点是不是条件节点判断走向
-    if (toDelData.isCondition && obj.type === 4 && obj.conditionNodes.length) {
+    //  先判断当前节点是条件节点
+    if (obj.type === 4 && obj.conditionNodes.length) {
       // 循环查找每一条分支
       for (let condNode of obj.conditionNodes) {
         if (!isFound) {
@@ -34,7 +34,9 @@ export function delChildFromObj(originObj, toDelData) {
           delFunc(condNode, node);
         }
       }
-    } else if (obj.childNode) {
+    }
+    // 如果分支里没找到，查找分支的子node
+    if (obj.childNode) {
       // 如果有子节点，判断子节点是不是要被删除的node
       // 如果是，把要删除节点的子节点设置为当前节点的子节点
       if (obj.childNode.nodeId === node.nodeId) {
